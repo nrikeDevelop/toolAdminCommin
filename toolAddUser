@@ -1,0 +1,23 @@
+#!/bin/bash
+function is_root(){
+if [ $(id -u) = 0 ]
+then
+	echo "" 
+else
+	echo "You must be root to acces"
+	exit 1
+fi 
+}
+
+
+
+is_root
+
+if [ $# -eq "2" ]
+then
+	adduser --quiet --disabled-password --shell /bin/bash --home /home/$1 --gecos "User" $2
+	echo "$1:$2" | chpasswd
+	echo "User has been added"
+else 
+	echo "Enter user password"
+fi
