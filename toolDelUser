@@ -1,0 +1,22 @@
+#!/bin/bash
+function is_root(){
+if [ $(id -u) = 0 ]
+then
+	echo "" 
+else
+	echo "You must be root to acces"
+	exit 1
+fi 
+}
+
+
+
+is_root
+
+if [ $# -eq "1" ]
+then
+	deluser $1
+	echo "User has been deleted"
+else 
+	echo "Enter user"
+fi
